@@ -2,23 +2,23 @@ vCard - Personal Portfolio
 
 # sidebar
 
-alt = Richard hanrick
-Richard hanrick
-Web developer
+alt = Rakesh Androtula
+Rakesh Androtula
+Engineering Manager
 
 Show Contacts
 
 Email
-richard@example.com
+rakesh.androtula@gmail.com
 
 Phone
-+1 (213) 352-2795
++91 7799286164
 
 Birthday
-June 23, 1982
+Aug 31, 1984
 
 Location
-Sacramento, California, USA
+Hyderabad, Telangana, India
 
 # navbar
 
