@@ -8,13 +8,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target); // Only animate once
+                if (entry.target.classList.contains('reveal')) {
+                    entry.target.classList.add('revealed');
+                } else {
+                    entry.target.classList.add('visible');
+                }
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    const animatedElements = document.querySelectorAll('.animate-fade-in');
+    const animatedElements = document.querySelectorAll('.animate-fade-in, .reveal');
     animatedElements.forEach(el => observer.observe(el));
 
     // Navbar Scroll Effect
@@ -35,6 +39,15 @@ document.addEventListener('DOMContentLoaded', () => {
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('active');
             menuBtn.classList.toggle('open');
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                menuBtn.classList.remove('open');
+            });
         });
     }
 
