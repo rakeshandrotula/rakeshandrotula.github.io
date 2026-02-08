@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | Rakesh Androtula</title>
-    <meta name="description"
-        content="Portfolio of Rakesh Androtula, a Senior Engineering Manager with 20+ years of experience in building scalable mobile and web applications.">
+
     <meta name="keywords"
         content="Rakesh Androtula, Engineering Manager, Software Architect, .NET, Azure, Microservices, Portfolio">
     <link rel="canonical" href="https://rakeshandrotula.github.io/">
@@ -53,9 +52,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
-<body>
-
-    <!-- Background Elements -->
+<body data-theme="light">
+    <canvas id="ripple-canvas"></canvas>
     <div class="blob" style="top: -100px; left: -100px;"></div>
     <div class="blob" style="bottom: -100px; right: -100px; background: var(--secondary-color);"></div>
 
@@ -74,10 +72,7 @@
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="theme-toggle-btn"
-                style="cursor: pointer; font-size: 1.2rem; padding: 0.5rem; margin-right: 1rem;">
-                <i class="fas fa-moon"></i>
-            </div>
+
             <div class="mobile-menu-btn">
                 <i class="fas fa-bars"></i>
             </div>
@@ -108,10 +103,11 @@
             <div class="hero-content" style="align-items: center;">
                 <h3 class="animate-fade-in">Hello, I'm</h3>
                 <h1 class="animate-fade-in" style="animation-delay: 0.2s;">
-                    <span class="text-gradient">Rakesh Androtula</span>
+                    Rakesh <span class="text-gradient">Androtula</span>
                 </h1>
                 <p class="hero-subtitle animate-fade-in" style="animation-delay: 0.4s;">
-                    Senior Engineering Manager - Product
+                    <span class="highlight">Senior Engineering Manager - Product</span> at <span class="text-gradient"
+                        style="font-weight: 700;">Experian</span>
                 </p>
                 <div class="cta-buttons animate-fade-in" style="animation-delay: 0.6s;">
                     <a href="#projects" class="btn btn-outline">View Work</a>
@@ -125,7 +121,7 @@
     <!-- About Section -->
     <section id="about" class="section">
         <div class="container">
-            <h2 class="section-title animate-fade-in"><span class="text-gradient">About Me</span></h2>
+            <h2 class="section-title animate-fade-in">About <span class="text-gradient">Me</span></h2>
             <div class="about-grid" style="grid-template-columns: 1fr;"> <!-- Full width text since image moved -->
                 <div class="about-text animate-fade-in">
                     <p>
@@ -166,7 +162,7 @@
                 <!-- Experience 1 -->
                 <div class="timeline-item left animate-fade-in">
                     <div class="timeline-content">
-                        <h3>Engineering Manager</h3>
+                        <h3>Senior Engineering Manager</h3>
                         <h4 style="color: var(--primary-color); font-size: 1rem;">Experian | Hyderabad</h4>
                         <span style="font-size: 0.85rem; opacity: 0.7;">May 2024 – Present</span>
                         <p style="margin-top: 10px; font-size: 0.9rem;">
@@ -369,19 +365,29 @@
     <!-- Contact Section -->
     <section id="contact" class="section">
         <div class="container text-center">
-            <h2 class="section-title animate-fade-in">Get In <span class="text-gradient">Touch</span></h2>
-
-
-            <div class="social-links animate-fade-in">
-                <a href="https://www.linkedin.com/in/rakeshandrotula/" target="_blank" class="social-btn"><i
-                        class="fab fa-linkedin-in"></i></a>
-                <a href="https://github.com/rakeshandrotula" target="_blank" class="social-btn"><i
-                        class="fab fa-github"></i></a>
-                <a href="mailto:rakesh.androtula@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
+            <div class="contact-grid animate-fade-in">
+                <a href="https://www.linkedin.com/in/rakeshandrotula/" target="_blank" class="contact-card glass-card">
+                    <i class="fab fa-linkedin-in"></i>
+                    <h3>LinkedIn</h3>
+                    <p>Connect for professional networking</p>
+                    <span class="action-link">Follow <i class="fas fa-arrow-right"></i></span>
+                </a>
+                <a href="https://github.com/rakeshandrotula" target="_blank" class="contact-card glass-card">
+                    <i class="fab fa-github"></i>
+                    <h3>GitHub</h3>
+                    <p>Check out my open-source work</p>
+                    <span class="action-link">Explore <i class="fas fa-arrow-right"></i></span>
+                </a>
+                <a href="mailto:rakesh.androtula@gmail.com" class="contact-card glass-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>Get in touch for collaborations</p>
+                    <span class="action-link">Send Message <i class="fas fa-arrow-right"></i></span>
+                </a>
             </div>
 
             <footer class="footer">
-                <p>&copy; 2026 Rakesh Androtula. All rights reserved.</p>
+                <p>&copy; <span id="current-year">2024</span> Rakesh Androtula. All rights reserved.</p>
             </footer>
         </div>
     </section>

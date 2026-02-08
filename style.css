@@ -1,11 +1,5 @@
-/* 
- * Premium Portfolio Design System
- * 
- * Colors: Deep Navy/Black background with Vibrant Purple/Blue Accents (Glassmorphism)
- * Fonts: 'Outfit', sans-serif (Modern, clean)
- */
+/* Georgia Serif Design System */
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
 :root {
     /* Color Palette */
@@ -32,27 +26,32 @@
     --spacing-xl: 8rem;
 
     /* Glassmorphism */
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: 1px solid rgba(255, 255, 255, 0.08);
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    /* Increased from 0.05 */
+    --glass-border: 1px solid rgba(255, 255, 255, 0.12);
     --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     --backdrop-blur: blur(12px);
 
-    /* Transitions */
-    --transition-fast: 0.2s ease;
-    --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Font Mapping (Classic Serif) */
+    --font-heading: Georgia, 'Times New Roman', Times, serif;
+    --font-body: Georgia, 'Times New Roman', Times, serif;
+    --font-bold: Georgia, 'Times New Roman', Times, serif;
 }
 
 [data-theme="light"] {
-    --bg-color: #ffffff;
-    --surface-color: #f5f5f5;
-    --surface-hover: #e0e0e0;
-    --primary-color: #ef5350;
-    --secondary-color: #ff8a80;
-    --text-primary: #1a0a0a;
-    --text-secondary: #424242;
-    --glass-bg: rgba(0, 0, 0, 0.05);
-    /* Darker glass for light mode */
-    --glass-border: 1px solid rgba(0, 0, 0, 0.1);
+    --bg-color: #f8f9fa;
+    /* Slightly off-white */
+    --surface-color: #ffffff;
+    --surface-hover: #f1f3f5;
+    --primary-color: #d63031;
+    /* Slightly more vibrant red */
+    --secondary-color: #ff7675;
+    --text-primary: #2d3436;
+    /* Softer charcoal than pure black */
+    --text-secondary: #636e72;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    /* Much more solid in light mode for readability */
+    --glass-border: 1px solid rgba(0, 0, 0, 0.05);
     --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -67,11 +66,23 @@ html {
 }
 
 body {
-    font-family: 'Outfit', sans-serif;
+    font-family: var(--font-body);
+    /* ntype82 */
     background-color: var(--bg-color);
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
+}
+
+#ripple-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    pointer-events: none;
+    opacity: 1.0;
 }
 
 /* Scrollbar */
@@ -99,15 +110,17 @@ h3,
 h4,
 h5,
 h6 {
-    line-height: 1.1;
+    font-family: var(--font-heading);
+    line-height: 1.2;
     margin-bottom: var(--spacing-sm);
     color: var(--text-primary);
+    font-weight: 700;
 }
 
 h1 {
     font-size: clamp(2.5rem, 5vw, 4.5rem);
     font-weight: 800;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
 }
 
 h2 {
@@ -119,6 +132,12 @@ p {
     color: var(--text-secondary);
     margin-bottom: var(--spacing-sm);
 }
+
+.hero-subtitle .highlight {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
 
 a {
     text-decoration: none;
@@ -184,8 +203,9 @@ a {
 .glass-card {
     background: var(--glass-bg);
     border: var(--glass-border);
-    backdrop-filter: var(--backdrop-blur);
-    border-radius: 16px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 12px;
     padding: var(--spacing-md);
     transition: var(--transition-smooth);
 }
@@ -219,6 +239,64 @@ a {
 .visible {
     animation: fadeIn 0.8s ease forwards;
 }
+
+/* Contact Section Enhancements */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+    max-width: 1000px;
+    margin: 3rem auto 0;
+}
+
+.contact-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-lg) var(--spacing-md);
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.contact-card i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.contact-card h3 {
+    margin-bottom: var(--spacing-xs);
+    font-family: var(--font-bold);
+}
+
+.contact-card p {
+    font-size: 0.9rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.contact-card .action-link {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition-short);
+}
+
+.contact-card:hover .action-link {
+    gap: 0.8rem;
+}
+
+.footer {
+    margin-top: 4rem;
+    padding: var(--spacing-md) 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    opacity: 0.7;
+    font-size: 0.9rem;
+}
+
 
 /* Blob Backgrounds */
 .blob {
@@ -296,9 +374,10 @@ a {
 }
 
 .nav-links a {
-    font-weight: 500;
-    font-size: 0.95rem;
-    opacity: 0.8;
+    font-family: var(--font-bold);
+    font-weight: 700;
+    font-size: 1.05rem;
+    opacity: 0.9;
 }
 
 .nav-links a:hover {
@@ -402,18 +481,21 @@ a {
 }
 
 .timeline-content {
-    padding: 20px 30px;
-    background: var(--surface-color);
+    padding: var(--spacing-md);
+    background: var(--glass-bg);
+    border: var(--glass-border);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 12px;
     position: relative;
-    border-radius: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
     transition: var(--transition-smooth);
 }
 
 .timeline-content:hover {
+    background: rgba(255, 255, 255, 0.08);
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(213, 0, 0, 0.2);
     border-color: var(--primary-color);
+    box-shadow: 0 10px 30px rgba(239, 83, 80, 0.2);
 }
 
 @media (max-width: 768px) {
