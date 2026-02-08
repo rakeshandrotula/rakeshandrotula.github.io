@@ -6,20 +6,35 @@
  * Fonts: 'DotGothic16' (Headings), 'Inter' (Body)
  */
 
-/* Light Theme Variables */
-:root,
-[data-theme="light"] {
+:root {
+    /* Color Palette */
     --bg-color: #e6e6e6;
+    /* Light gray industrial background for light mode default basis, but we will override */
     --surface-color: #f2f2f2;
     --border-color: #cccccc;
     --primary-color: #D71921;
+    /* Nothing Red */
     --text-primary: #1a1a1a;
     --text-secondary: #666666;
+
+    /* Grid */
     --grid-color: #d1d1d1;
     --grid-size: 20px;
+
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --spacing-xl: 6rem;
+
+    /* Transitions */
+    --transition-fast: 0.1s steps(2);
+    /* Digital/stepped feel */
+    --transition-smooth: 0.3s cubic-bezier(0, 0, 0, 1);
+    /* Instant snap finish */
 }
 
-/* Dark Theme Variables */
 [data-theme="dark"] {
     --bg-color: #000000;
     --surface-color: #121212;
@@ -30,9 +45,9 @@
     --grid-color: #222222;
 }
 
-/* System Preference Support */
+/* Force Dark Mode Default if system pref matches or JS sets it */
 @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
+    :root {
         --bg-color: #000000;
         --surface-color: #121212;
         --border-color: #333333;
@@ -182,44 +197,6 @@ a {
     background: transparent;
     color: var(--primary-color);
 }
-
-/* Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.animate-fade-in {
-    opacity: 0;
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.visible {
-    opacity: 1 !important;
-    animation: fadeIn 0.8s ease forwards;
-}
-
-.grid-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    /* Crucial: ensures links are clickable */
-    z-index: 9999;
-    opacity: 0.05;
-    background-image: radial-gradient(var(--text-primary) 1px, transparent 1px);
-    background-size: 40px 40px;
-}
-
 
 /* Navbar */
 .navbar {
