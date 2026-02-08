@@ -40,7 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Theme Toggle
     const themeBtn = document.querySelector('.theme-toggle-btn');
-    const themeIcon = themeBtn.querySelector('i');
+    let themeIcon = null;
+    if (themeBtn) {
+        themeIcon = themeBtn.querySelector('i');
+    }
 
     // Check local storage
     const currentTheme = localStorage.getItem('theme');
