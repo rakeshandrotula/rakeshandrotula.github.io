@@ -1,148 +1,57 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Scroll Animation Observer
+    // 1. Mouse Spotlight Effect
+    const updateSpotlight = (e) => {
+        document.body.style.setProperty('--x', `${e.clientX}px`);
+        document.body.style.setProperty('--y', `${e.clientY}px`);
+    };
+    window.addEventListener('mousemove', updateSpotlight);
+
+    // 2. Navigation Intersection Observer
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('nav ul li a');
+
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px"
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5 // Section is active when 50% visible
     };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                if (entry.target.classList.contains('reveal')) {
-                    entry.target.classList.add('revealed');
-                } else {
-                    entry.target.classList.add('visible');
-                }
-                observer.unobserve(entry.target);
+                const id = entry.target.getAttribute('id');
+                
+                // Update nav links
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('active');
+                    }
+                });
             }
         });
     }, observerOptions);
 
-    const animatedElements = document.querySelectorAll('.animate-fade-in, .reveal');
-    animatedElements.forEach(el => observer.observe(el));
+    sections.forEach(section => observer.observe(section));
 
-    // Navbar Scroll Effect
-    const navbar = document.querySelector('.navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
+    // 3. Smooth internal scrolling logic
+    navLinks.forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
     });
 
-    // Mobile Menu Toggle
-    const menuBtn = document.querySelector('.mobile-menu-btn');
-    const mobileMenu = document.querySelector('.mobile-menu');
-
-    if (menuBtn && mobileMenu) {
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            menuBtn.classList.toggle('open');
-        });
-
-        // Close mobile menu when a link is clicked
-        const mobileLinks = mobileMenu.querySelectorAll('a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                menuBtn.classList.remove('open');
-            });
-        });
-    }
-
-    // Dynamic Footer Year
+    // 4. Dynamic Footer Year
     const yearSpan = document.getElementById('current-year');
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
-    }
-
-    // Initialize theme based on preference
-    const storedTheme = localStorage.getItem('theme');
-    if (storedTheme === 'dark') {
-        document.documentElement.removeAttribute('data-theme');
-    } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-    }
-
-    // Interactive "Red Smoke" Water Ripple Effect
-    const canvas = document.getElementById('ripple-canvas');
-    if (canvas) {
-        const ctx = canvas.getContext('2d');
-        let width, height, size;
-        let buffer1, buffer2;
-        let ripple_data;
-        let step = 2; // Resolution scale
-
-        function init() {
-            width = canvas.width = window.innerWidth / step;
-            height = canvas.height = window.innerHeight / step;
-            size = width * height;
-
-            buffer1 = new Int16Array(size);
-            buffer2 = new Int16Array(size);
-
-            ripple_data = ctx.createImageData(width, height);
-        }
-
-        function disturb(x, y, z) {
-            x = Math.floor(x / step);
-            y = Math.floor(y / step);
-            if (x < 1 || x > width - 1 || y < 1 || y > height - 1) return;
-            let i = x + y * width;
-            buffer1[i] += z;
-        }
-
-        function update() {
-            let i = width;
-            let a, data = ripple_data.data;
-
-            for (let y = 1; y < height - 1; y++) {
-                for (let x = 1; x < width - 1; x++) {
-                    i++;
-                    // Basic wave algorithm
-                    a = (buffer1[i - 1] + buffer1[i + 1] + buffer1[i - width] + buffer1[i + width]) >> 1;
-                    a -= buffer2[i];
-                    a -= a >> 5; // Damping
-
-                    buffer2[i] = a;
-
-                    // Rendering "Red Smoke"
-                    a = a > 255 ? 255 : (a < -255 ? -255 : a);
-
-                    let pixel = i * 4;
-                    // Red smoke tint: Vibrant red gradients
-                    data[pixel] = 214;     // R (d63031 equivalent)
-                    data[pixel + 1] = 48;  // G
-                    data[pixel + 2] = 49;  // B
-                    // Alpha based on wave height provides the smoke/liquid look
-                    data[pixel + 3] = Math.abs(a) + 20;
-                }
-                i += 2;
-            }
-
-            // Swap buffers
-            let temp = buffer1;
-            buffer1 = buffer2;
-            buffer2 = temp;
-
-            ctx.putImageData(ripple_data, 0, 0);
-        }
-
-        window.addEventListener('resize', init);
-        window.addEventListener('mousemove', (e) => disturb(e.clientX, e.clientY, 256));
-        window.addEventListener('click', (e) => disturb(e.clientX, e.clientY, 1024));
-
-        init();
-        function loop() {
-            update();
-            requestAnimationFrame(loop);
-        }
-        loop();
-
-        // Auto-ripples for "ambient smoke" effect
-        setInterval(() => {
-            disturb(Math.random() * window.innerWidth, Math.random() * window.innerHeight, 256);
-        }, 1500);
     }
 });

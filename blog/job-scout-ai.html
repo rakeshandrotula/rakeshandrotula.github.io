@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobScout-AI: The Ultimate Job Search Automation Engine | Rakesh Androtula</title>
+    <link rel="icon" type="image/png" href="../logo.png">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .blog-header { padding: 8rem 0 4rem; text-align: center; background: rgba(var(--primary-color-rgb), 0.05); }
+        .blog-content { max-width: 800px; margin: 0 auto; padding: 4rem 2rem; font-size: 1.1rem; line-height: 1.8; color: var(--text-color); }
+        .blog-content h2 { margin-top: 2.5rem; margin-bottom: 1rem; color: var(--primary-color); }
+        .blog-content p { margin-bottom: 1.5rem; }
+        .blog-image { width: 100%; border-radius: 12px; margin: 2rem 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .back-link { display: inline-block; margin-top: 3rem; color: var(--secondary-color); text-decoration: none; font-weight: bold; }
+        .back-link:hover { text-decoration: underline; }
+        
+        /* Architecture Diagram Styles */
+        .arch-diagram-container { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 2rem; margin: 2.5rem 0; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .node { fill: var(--primary-color); transition: all 0.3s ease; }
+        .node:hover { filter: contrast(1.2) brightness(1.1); transform: translateY(-3px); }
+        .node-text { fill: #fff; font-family: 'Inter', sans-serif; font-weight: bold; font-size: 14px; pointer-events: none; }
+        .line-svg { stroke: var(--text-color); stroke-width: 2; marker-end: url(#arrowhead); opacity: 0.4; }
+        .phase-label { font-size: 12px; font-weight: bold; fill: var(--secondary-color); text-transform: uppercase; }
+    </style>
+</head>
+<body data-theme="light">
+    <nav class="navbar" style="background: var(--navbar-bg); box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">Rakesh Androtula</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#case-studies">Case Studies</a></li>
+                <li><a href="../index.html#blog">Blog/Notes</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="blog-header">
+        <div class="container reveal reveal-up">
+            <span style="color: var(--secondary-color); font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Product & Automation</span>
+            <h1 style="margin-top: 1rem; font-size: 2.5rem; line-height: 1.2;">JobScout-AI: The Ultimate Job Search Automation Engine</h1>
+            <p style="opacity: 0.7; margin-top: 1rem;">Published on March 21, 2026</p>
+        </div>
+    </header>
+
+    <main class="blog-content reveal reveal-up delay-100">
+        <p>The job search process today is often overwhelming—hundreds of applications, countless versions of resumes, and endless scrolling. <strong>JobScout-AI</strong> is my solution to this problem: an end-to-end, AI-powered workflow designed to automate the most tedious parts of searching for a job while maintaining a high standard of quality.</p>
+        
+        <img src="../job-scout-ai-dashboard.png" alt="JobScout-AI Dashboard Mockup" class="blog-image">
+
+        <h2>The Problem: Quality vs. Quantity</h2>
+        <p>Applying to jobs at scale usually means sacrificing the quality of the application. However, tailored resumes have a much higher success rate. JobScout-AI bridges this gap by using autonomous agents to scout, filter, and adaptively tailor applications for each specific role.</p>
+
+        <h2>Detailed System Architecture</h2>
+        <p>The core of JobScout-AI is divided into four distinct phases, each powered by a specialized tech stack.</p>
+
+        <div class="arch-diagram-container">
+            <svg viewBox="0 0 800 450" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orientation="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="var(--text-color)" opacity="0.4" />
+                    </marker>
+                    <linearGradient id="phaseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:var(--primary-color);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:var(--secondary-color);stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                
+                <!-- Connections -->
+                <line class="line-svg" x1="150" y1="120" x2="350" y2="120" />
+                <line class="line-svg" x1="350" y1="120" x2="350" y2="280" />
+                <line class="line-svg" x1="350" y1="280" x2="150" y2="280" />
+                <line class="line-svg" x1="150" y1="280" x2="150" y2="350" x2="350" y2="350" /> <!-- Custom path below -->
+                <path class="line-svg" d="M 150 280 L 150 400 L 400 400" fill="none" />
+                <line class="line-svg" x1="550" y1="120" x2="550" y2="280" />
+                <path class="line-svg" d="M 550 280 L 550 400 L 400 400" fill="none" />
+
+                <!-- Nodes -->
+                <!-- Phase 1 -->
+                <g class="node-group">
+                    <rect x="50" y="80" width="200" height="80" rx="10" class="node" />
+                    <text x="150" y="105" text-anchor="middle" class="phase-label">Phase 1: The Scout</text>
+                    <text x="150" y="130" text-anchor="middle" class="node-text">LinkedIn Playwright</text>
+                </g>
+                
+                <!-- Phase 2 -->
+                <g class="node-group">
+                    <rect x="450" y="80" width="200" height="80" rx="10" class="node" />
+                    <text x="550" y="105" text-anchor="middle" class="phase-label">Phase 2: The Approval</text>
+                    <text x="550" y="130" text-anchor="middle" class="node-text">Streamlit Interactive UI</text>
+                </g>
+
+                <!-- Phase 3 -->
+                <g class="node-group">
+                    <rect x="450" y="240" width="200" height="80" rx="10" class="node" />
+                    <text x="550" y="265" text-anchor="middle" class="phase-label">Phase 3: The Tailor</text>
+                    <text x="550" y="290" text-anchor="middle" class="node-text">LangChain + GPT-4o-mini</text>
+                </g>
+
+                <!-- Phase 4 -->
+                <g class="node-group">
+                    <rect x="50" y="240" width="200" height="80" rx="10" class="node" />
+                    <text x="150" y="265" text-anchor="middle" class="phase-label">Phase 4: The Closer</text>
+                    <text x="150" y="290" text-anchor="middle" class="node-text">Hybrid Automation</text>
+                </g>
+
+                <!-- Output -->
+                <g class="node-group">
+                    <circle cx="400" cy="400" r="40" class="node" style="fill: var(--secondary-color);" />
+                    <text x="400" y="405" text-anchor="middle" class="node-text" style="font-size: 11px;">SUCCESS 🎉</text>
+                </g>
+            </svg>
+        </div>
+
+        <h2>How It Works</h2>
+        <p>1. <strong>The Scout</strong>: Using Playwright with stealth plugins, the engine scrapes LinkedIn for high-value leads based on your specific criteria, bypassing bot detection.</p>
+        <p>2. <strong>The Approval</strong>: A Streamlit dashboard allows for human-in-the-loop verification. You approved the most promising leads with a single click.</p>
+        <p>3. <strong>The Tailor</strong>: This is where the magic happens. LangChain analyzes the job description, detects the industry context, and "surgically injects" relevant components from your master resume template using GPT-4o-mini.</p>
+        <p>4. <strong>The Closer</strong>: The engine automates the application process, handling "Easy Apply" roles instantly and providing a browser session for external applications.</p>
+
+        <h2>Conclusion</h2>
+        <p>JobScout-AI isn't just a tool; it's a paradigm shift in how we approach the job market. By automating the mechanical tasks, it allows candidates to focus on what really matters: preparing for interviews and finding the right culture fit.</p>
+
+        <a href="../index.html#blog" class="back-link"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+    </main>
+
+    <footer class="footer" style="padding: 2rem; text-align: center; border-top: 1px solid var(--border-color);">
+        <p>&copy; <span id="current-year">2026</span> Rakesh Androtula. All rights reserved.</p>
+    </footer>
+</body>
+</html>
