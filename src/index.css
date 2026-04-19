@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --color-slate-850: #151e2e;
+}
+
+@layer base {
+  body {
+    @apply bg-slate-900 text-slate-300 font-sans antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-white font-semibold tracking-tight;
+  }
+}
+
+.glass-panel {
+  @apply bg-slate-800/50 backdrop-blur-md border border-slate-700/50 rounded-2xl shadow-xl;
+}
